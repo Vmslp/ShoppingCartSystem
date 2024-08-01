@@ -1,0 +1,36 @@
+package com.example.CartMicroservices.dto;
+
+public class CartResponse {
+
+	private int cartId;
+
+	private double totalPrice;
+
+	private ItemResponse itemResponse;
+
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public ItemResponse getItemResponse() {
+		return itemResponse;
+	}
+
+	public void setItemResponse(ItemResponse itemResponse) {
+		this.itemResponse = itemResponse;
+	}
+
+	
+}
