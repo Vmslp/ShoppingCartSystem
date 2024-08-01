@@ -1,0 +1,20 @@
+package com.example.CartMicroservices.service;
+
+import java.util.List;
+
+import com.example.CartMicroservices.dto.CartResponse;
+import com.example.CartMicroservices.entity.Cart;
+
+public interface CartService {
+
+	Cart create(Cart cart);
+
+	Cart getCartById(int cartId);
+
+	List<Cart> getAllCarts();
+
+	void deleteCartById(int cartId);
+
+	CartResponse getIteminCart(int cartId, int itemId);
+
+}
