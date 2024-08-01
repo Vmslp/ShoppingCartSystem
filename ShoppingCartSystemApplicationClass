@@ -1,0 +1,11 @@
+
+@SpringBootApplication
+@EnableFeignClients
+@EnableEurekaClient
+public class CartMicroservicesApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CartMicroservicesApplication.class, args);
+	}
+
+}
