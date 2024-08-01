@@ -1,0 +1,57 @@
+package com.example.CartMicroservices.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.CartMicroservices.dto.CartResponse;
+import com.example.CartMicroservices.dto.ItemResponse;
+import com.example.CartMicroservices.entity.Cart;
+import com.example.CartMicroservices.repository.CartRepository;
+import com.example.CartMicroservices.service.CartService;
+import com.example.CartMicroservices.service.ItemService;
+
+@Service
+public class CartServiceImpl implements CartService {
+
+	@Autowired
+	private CartRepository cartRepository;
+
+	@Autowired
+	private ItemService itemserviceClient;
+
+	@Override
+	public Cart create(Cart cart) {
+		return cartRepository.save(cart);
+	}
+
+	@Override
+	public Cart getCartById(int cartId) {
+		Cart cartObj = cartRepository.findById(cartId).get();
+		return cartObj;
+
+	}
+
+	@Override
+	public List<Cart> getAllCarts() {
+		return cartRepository.findAll();
+	}
+
+
+	@Override
+	public void deleteCartById(int cartId) {
+		cartRepository.deleteById(cartId);
+	}
+
+	@Override
+	public CartResponse getIteminCart(int cartId, int itemId) {
+		Cart cartObj = cartRepository.findById(cartId).get();
+		CartResponse caretresponse = new CartResponse();
+		caretresponse.setCartId(cartObj.getCartId());
+		caretresponse.setTotalPrice(cartObj.getTotalPrice());
+		ItemResponse itemResponse = itemserviceClient.getItemById(itemId);
+		caretresponse.setItemResponse(itemResponse);  
+		return caretresponse;
+	}
+}
